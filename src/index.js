@@ -4,7 +4,8 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const userRoute = require('./routes/api/user')
 const testRoute = require('./routes/tests/getUserInfo')
-const port = 8081
+const port = process.env.PORT || 8081; // Use Render's PORT or fallback to 8081
+
 
 const cors = require("cors")
 
@@ -27,7 +28,7 @@ app.use('/api/users' , userRoute)
 
 app.use('/test' , testRoute)
 
-module.exports = app; 
-// app.listen(port ,()=>{
-//     console.log(`Server at port : ${port}`)
-// })
+// module.exports = app; 
+app.listen(port ,()=>{
+    console.log(`Server at port : ${port}`)
+})
