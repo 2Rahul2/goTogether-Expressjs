@@ -25,7 +25,7 @@ const createUser = async (req , res)=>{
         })
         
         const payload = ticket.getPayload()
-        console.log(payload)
+        // console.log(payload)
         const {email , name} = payload
         const id = payload.sub
         const existinguser = await db('users').where({email}).first()

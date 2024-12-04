@@ -33,7 +33,7 @@ const verifyToken = async (req , res , next)=>{
 
         const isValidToken = checkTokenExpiration(decoded.exp)
         if (!isValidToken){
-            console.log("EXPIRED TOKEN GIVEN TO THE SERVER")
+            // console.log("EXPIRED TOKEN GIVEN TO THE SERVER")
             return res.status(401).json({
                 message:"Token Expire"
             })
@@ -44,7 +44,7 @@ const verifyToken = async (req , res , next)=>{
         })
 
         const payload = ticket.getPayload()
-        console.log("Payload  ",payload)
+        // console.log("Payload  ",payload)
 
         req.user = {
             id:payload.sub,
