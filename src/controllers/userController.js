@@ -30,7 +30,7 @@ const createUser = async (req , res)=>{
         const id = payload.sub
         const existinguser = await db('users').where({email}).first()
         if (existinguser){
-            res.cookie('session_token' , token , {httpOnly:true , secure:false})
+            res.cookie('session_token' , token , {httpOnly:true , secure:true ,sameSite:"None"})
             return res.status(200).json({
                 message:"user signed in",
                 id:existinguser.id,
