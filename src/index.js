@@ -10,10 +10,16 @@ const port = process.env.PORT || 8081;
 const cors = require("cors")
 
 
-
+app.use((req, res, next) => {
+    res.setHeader('Cross-Origin-Opener-Policy', 'unsafe-none');
+    res.setHeader('Cross-Origin-Embedder-Policy', 'unsafe-none');
+    next();
+  });
+  
 app.use(bodyParser.json())
 app.use(cookieParser())
 app.use(cors({
+
     origin: ['https://magenta-sable-2d6826.netlify.app','http://localhost:3000'], 
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],

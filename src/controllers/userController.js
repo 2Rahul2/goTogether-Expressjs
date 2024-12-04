@@ -40,7 +40,7 @@ const createUser = async (req , res)=>{
         const result = await db('users').insert({id ,name , email}).returning('id')
         // const {id:userid} = result[0]
 
-        res.cookie('session_token' , token ,{httpOnly:true ,secure:false})
+        res.cookie('session_token' , token ,{httpOnly:true ,secure:true,sameSite:"None"})
         res.status(201).json({
             message:"User created",
             id,
