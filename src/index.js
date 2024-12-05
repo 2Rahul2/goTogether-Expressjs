@@ -9,13 +9,13 @@ const port = process.env.PORT || 8081;
 const path = require("path");
 
 const cors = require("cors")
-app.use(cors({
+// app.use(cors({
 
-    origin: ['https://magenta-sable-2d6826.netlify.app','http://localhost:3000'], 
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders:['Content-Type']
-}))
+//     origin: ['https://magenta-sable-2d6826.netlify.app','http://localhost:3000'], 
+//     credentials: true,
+//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//     allowedHeaders:['Content-Type']
+// }))
 
 // Serve React build files
 const buildPath = path.join(__dirname, '', 'build'); // Update path if `build` is moved outside `src`
