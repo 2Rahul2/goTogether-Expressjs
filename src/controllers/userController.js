@@ -29,7 +29,7 @@ const createUser = async (req , res)=>{
         const id = payload.sub
         const existinguser = await db('users').where({email}).first()
         if (existinguser){
-            res.cookie('session_token' , token , {httpOnly:true , secure:true ,sameSite:"lax"})
+            res.cookie('session_token' , token , {httpOnly:true , secure:true ,sameSite:"lax",path: "/"})
             return res.status(200).json({
                 message:"user signed in",
                 id:existinguser.id,
@@ -39,7 +39,7 @@ const createUser = async (req , res)=>{
         const result = await db('users').insert({id ,name , email}).returning('id')
         // const {id:userid} = result[0]
 
-        res.cookie('session_token' , token ,{httpOnly:true ,secure:true,sameSite:"lax"})
+        res.cookie('session_token' , token ,{httpOnly:true ,secure:true,sameSite:"lax",path: "/"})
         res.status(201).json({
             message:"User created",
             id,
