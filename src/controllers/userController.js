@@ -7,7 +7,7 @@ const client = new OAuth2Client(process.env.client_id)
 const db = require('../db')
 
 const logout = (req , res)=>{
-    res.clearCookie('session_token' ,{httpOnly:true ,secure:false})
+    res.clearCookie('session_token' ,{httpOnly:true ,secure:true})
     res.status(200).json({ message: 'Logged out successfully' });
 }
 
