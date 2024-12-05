@@ -6,10 +6,18 @@ const userRoute = require('./routes/api/user')
 const testRoute = require('./routes/tests/getUserInfo')
 const port = process.env.PORT || 8081; 
 
+const path = require("path");
 
 const cors = require("cors")
 
+// Serve React build files
+const buildPath = path.join(__dirname, '', 'build'); // Update path if `build` is moved outside `src`
+app.use(express.static(buildPath));
 
+// Serve React's index.html for any unmatched routes
+app.get('*', (req, res) => {
+    res.sendFile(path.join(buildPath, 'index.html'));
+});
 app.use((req, res, next) => {
     res.setHeader('Cross-Origin-Opener-Policy', 'unsafe-none');
     res.setHeader('Cross-Origin-Embedder-Policy', 'unsafe-none');
@@ -26,9 +34,9 @@ app.use(cors({
     allowedHeaders:['Content-Type']
 }))
 
-app.get("/",(req ,res)=>{
-    res.send("Hello from server")
-})
+// app.get("/",(req ,res)=>{
+//     res.send("Hello from server")
+// })
 
 app.use('/api/users' , userRoute)
 
